@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Partner｜札幌・北海道 事故・故障・レッカー即対応｜お車の総合窓口</title>
+    <meta name="description" content="札幌市内・北海道全域対応。事故・故障・レッカー・修理・車検・売買まで、お車のトラブルはDrive Partnerにお任せください。24時間受付・最短即対応。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- ▼▼▼ reCAPTCHA v2 — get your site key at https://www.google.com/recaptcha/admin ▼▼▼ -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        :root {
+            --ink: #0a0a0a;
+            --paper: #f5f2ed;
+            --accent: #c8102e;
+            --accent-dark: #9a0c23;
+            --navy: #0b1d3a;
+            --blue: #1565a8;
+            --teal: #1a8ca0;
+            --line-green: #06c755;
+            --line-green-dark: #05b04a;
+            --white: #ffffff;
+            --gray-50: #f0ede8;
+            --gray-100: #e8e5e0;
+            --gray-200: #d1cdc7;
+            --gray-300: #9e9a94;
+            --gray-500: #6b6860;
+            --gray-700: #3d3b37;
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Noto Sans JP', sans-serif;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; overflow-x:hidden; }
+        body { font-family:var(--font-body); background:var(--paper); color:var(--ink); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+
+        /* ═══════ NAVBAR ═══════ */
+        .navbar {
+            position:fixed; top:0; left:0; width:100%; z-index:1000;
+            padding:1rem 3rem; display:flex; justify-content:space-between; align-items:center;
+            transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+        }
+        .navbar.scrolled {
+            background:rgba(245,242,237,0.88); backdrop-filter:blur(20px);
+            -webkit-backdrop-filter:blur(20px); box-shadow:0 1px 0 rgba(0,0,0,0.06);
+        }
+        .nav-brand { display:flex; align-items:center; gap:0.7rem; text-decoration:none; color:var(--ink); }
+        .nav-brand img { height:36px; width:auto; }
+        .nav-brand-text { display:flex; flex-direction:column; line-height:1.2; }
+        .nav-brand-name { font-family:var(--font-display); font-weight:800; font-size:1.05rem; letter-spacing:0.02em; }
+        .nav-brand-sub { font-size:0.6rem; color:var(--gray-500); font-weight:500; letter-spacing:0.04em; }
+
+        .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
+        .nav-links a {
+            text-decoration:none; color:var(--gray-700); font-size:0.82rem;
+            font-weight:500; transition:color 0.3s; position:relative;
+        }
+        .nav-links a::after {
+            content:''; position:absolute; bottom:-4px; left:0;
+            width:0; height:1.5px; background:var(--accent);
+            transition:width 0.3s var(--ease-out-expo);
+        }
+        .nav-links a:hover { color:var(--ink); }
+        .nav-links a:hover::after { width:100%; }
+        .nav-cta {
+            display:inline-flex; align-items:center; gap:0.5rem;
+            background:var(--accent); color:var(--white)!important;
+            padding:0.55rem 1.3rem; border-radius:100px;
+            font-weight:700; font-size:0.78rem; letter-spacing:0.01em;
+            transition:all 0.3s ease;
+        }
+        .nav-cta::after { display:none!important; }
+        .nav-cta:hover { background:var(--accent-dark)!important; transform:scale(1.03); }
+
+        /* ═══════ HAMBURGER ═══════ */
+        .hamburger {
+            display:none; background:none; border:none; cursor:pointer;
+            width:32px; height:32px; position:relative; z-index:1002;
+            padding:0; flex-shrink:0;
+        }
+        .hamburger span {
+            display:block; width:22px; height:2px; background:var(--ink);
+            border-radius:2px; position:absolute; left:5px;
+            transition:all 0.35s var(--ease-out-expo);
+        }
+        .hamburger span:nth-child(1) { top:9px; }
+        .hamburger span:nth-child(2) { top:15px; }
+        .hamburger span:nth-child(3) { top:21px; }
+        .hamburger.active span:nth-child(1) { top:15px; transform:rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity:0; }
+        .hamburger.active span:nth-child(3) { top:15px; transform:rotate(-45deg); }
+
+        /* ═══════ MOBILE OVERLAY MENU ═══════ */
+        .mobile-menu {
+            display:none; position:fixed; inset:0; z-index:1001;
+            background:rgba(245,242,237,0.97); backdrop-filter:blur(24px);
+            -webkit-backdrop-filter:blur(24px);
+            flex-direction:column; align-items:center; justify-content:center;
+            gap:0; opacity:0; transition:opacity 0.35s ease;
+        }
+        .mobile-menu.open { display:flex; opacity:1; }
+        .mobile-menu a {
+            text-decoration:none; color:var(--ink); font-size:1.2rem;
+            font-weight:600; padding:1rem 2rem; letter-spacing:0.02em;
+            transition:color 0.2s;
+        }
+        .mobile-menu a:hover { color:var(--accent); }
+        .mobile-menu .mobile-menu-cta {
+            margin-top:1.5rem; display:inline-flex; align-items:center; gap:0.5rem;
+            background:var(--accent); color:var(--white); padding:0.8rem 1.6rem;
+            border-radius:100px; font-weight:700; font-size:0.9rem;
+        }
+
+        /* ═══════ HERO ═══════ */
+        .hero {
+            min-height:100vh; display:flex; align-items:center; position:relative;
+            padding:8rem 3rem 4rem; overflow:hidden;
+        }
+        .hero-bg { position:absolute; inset:0; z-index:0; }
+        .hero-bg::before {
+            content:''; position:absolute; top:-20%; right:-10%;
+            width:70vw; height:70vw;
+            background:radial-gradient(circle, rgba(200,16,46,0.06) 0%, transparent 60%);
+            border-radius:50%;
+        }
+        .hero-bg::after {
+            content:''; position:absolute; bottom:0; left:0; right:0;
+            height:1px; background:linear-gradient(90deg, transparent, var(--gray-200), transparent);
+        }
+        /* Watermark logo */
+        .hero-watermark {
+            position:absolute; left:47%; top:28%; transform:translate(-50%,-50%);
+            width:34vw; max-width:440px; opacity:0.08; z-index:1;
+            pointer-events:none; user-select:none;
+            filter:contrast(0.3);
+            animation:fadeUp 1.2s var(--ease-out-expo) 0.3s both;
+        }
+        /* Diagonal speed lines */
+        .hero-lines { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+        .hero-lines span {
+            position:absolute; display:block;
+            height:1px; background:linear-gradient(90deg, transparent, var(--gray-300), transparent);
+            transform:rotate(-35deg); transform-origin:left center;
+            opacity:0; animation:speedLine 1s var(--ease-out-expo) both;
+        }
+        .hero-lines span:nth-child(1) { width:45vw; top:18%; right:-10%; animation-delay:0.8s; }
+        .hero-lines span:nth-child(2) { width:55vw; top:35%; right:-15%; animation-delay:1.0s; }
+        .hero-lines span:nth-child(3) { width:35vw; top:55%; right:-5%; animation-delay:1.2s; }
+        .hero-lines span:nth-child(4) { width:50vw; top:72%; right:-12%; animation-delay:1.4s; }
+        .hero-lines span:nth-child(5) { width:28vw; top:88%; right:-3%; animation-delay:1.6s; }
+        @keyframes speedLine { to { opacity:0.18; } }
+        .hero-grid {
+            position:absolute; inset:0; z-index:0; opacity:0.10;
+        }
+        .hero-grid::before {
+            content:''; position:absolute; top:0; left:20%;
+            width:1px; height:100%;
+            background:linear-gradient(180deg, transparent, var(--gray-300), transparent);
+        }
+        .hero-grid::after {
+            content:''; position:absolute; top:0; left:60%;
+            width:1px; height:100%;
+            background:linear-gradient(180deg, transparent, var(--gray-300), transparent);
+        }
+        .hero-content { position:relative; z-index:2; max-width:800px; }
+        .hero-eyebrow {
+            display:inline-flex; align-items:center; gap:0.6rem;
+            font-size:0.76rem; font-weight:600; letter-spacing:0.12em;
+            text-transform:uppercase; color:var(--accent); margin-bottom:1.6rem;
+            opacity:0; transform:translateY(20px);
+            animation:fadeUp 0.7s var(--ease-out-expo) 0.2s forwards;
+        }
+        .hero-eyebrow::before { content:''; width:28px; height:2px; background:var(--accent); }
+        .hero-title {
+            font-weight:900; font-size:clamp(2.4rem,5.5vw,4.2rem);
+            line-height:1.18; letter-spacing:-0.03em; margin-bottom:1.3rem;
+            opacity:0; transform:translateY(30px);
+            animation:fadeUp 0.8s var(--ease-out-expo) 0.35s forwards;
+        }
+        .hero-title .highlight { position:relative; display:inline-block; }
+        .hero-title .highlight::after {
+            content:''; position:absolute; bottom:0.08em; left:-0.02em; right:-0.02em;
+            height:0.18em; background:rgba(200,16,46,0.12); border-radius:4px; z-index:-1;
+        }
+        .hero-sub {
+            font-size:1.05rem; line-height:1.9; color:var(--gray-500);
+            max-width:520px; margin-bottom:2.2rem; font-weight:300;
+            opacity:0; transform:translateY(30px);
+            animation:fadeUp 0.8s var(--ease-out-expo) 0.5s forwards;
+        }
+        .hero-actions {
+            display:flex; gap:0.8rem; flex-wrap:wrap;
+            opacity:0; transform:translateY(30px);
+            animation:fadeUp 0.8s var(--ease-out-expo) 0.65s forwards;
+        }
+        .btn-primary {
+            display:inline-flex; align-items:center; gap:0.6rem;
+            background:var(--ink); color:var(--white);
+            padding:0.95rem 1.8rem; border-radius:100px;
+            text-decoration:none; font-weight:600; font-size:0.88rem;
+            transition:all 0.4s var(--ease-out-expo); border:none; cursor:pointer;
+        }
+        .btn-primary:hover { background:var(--accent); transform:translateY(-2px); box-shadow:0 8px 30px rgba(200,16,46,0.2); }
+        .btn-primary svg { transition:transform 0.3s var(--ease-out-expo); }
+        .btn-primary:hover svg { transform:translateX(3px); }
+        .btn-line-hero {
+            display:inline-flex; align-items:center; gap:0.6rem;
+            background:var(--line-green); color:var(--white);
+            padding:0.95rem 1.8rem; border-radius:100px;
+            text-decoration:none; font-weight:600; font-size:0.88rem;
+            transition:all 0.4s var(--ease-out-expo);
+        }
+        .btn-line-hero:hover { background:var(--line-green-dark); transform:translateY(-2px); box-shadow:0 8px 30px rgba(6,199,85,0.25); }
+        .btn-secondary {
+            display:inline-flex; align-items:center; gap:0.6rem;
+            background:transparent; color:var(--ink); padding:0.95rem 1.8rem;
+            border-radius:100px; text-decoration:none; font-weight:600;
+            font-size:0.88rem; border:1.5px solid var(--gray-200);
+            transition:all 0.4s var(--ease-out-expo);
+        }
+        .btn-secondary:hover { border-color:var(--ink); transform:translateY(-2px); }
+
+        /* Hero stat cards */
+        .hero-stats {
+            position:absolute; right:3rem; top:50%; transform:translateY(-50%);
+            z-index:2; display:flex; flex-direction:column; gap:0.8rem;
+        }
+        .stat-card {
+            background:var(--white); border-radius:16px; padding:1.3rem 1.6rem;
+            box-shadow:0 4px 24px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04);
+            min-width:200px; border:1px solid rgba(0,0,0,0.04);
+            opacity:0; transform:translateX(40px);
+        }
+        .stat-card:nth-child(1) { animation:slideLeft 0.7s var(--ease-out-expo) 0.9s forwards; }
+        .stat-card:nth-child(2) { animation:slideLeft 0.7s var(--ease-out-expo) 1.05s forwards; }
+        .stat-card:nth-child(3) { animation:slideLeft 0.7s var(--ease-out-expo) 1.2s forwards; }
+        .stat-icon { font-size:0.9rem; margin-bottom:0.4rem; color:var(--gray-500); }
+        .stat-title { font-weight:700; font-size:0.9rem; margin-bottom:0.15rem; }
+        .stat-desc { font-size:0.72rem; color:var(--gray-300); font-weight:400; }
+
+        /* ═══════ MARQUEE ═══════ */
+        .marquee-section { padding:1.2rem 0; background:var(--ink); overflow:hidden; }
+        .marquee-track { display:flex; animation:marquee 30s linear infinite; white-space:nowrap; }
+        .marquee-item {
+            flex-shrink:0; display:flex; align-items:center; gap:1.8rem; padding:0 1.8rem;
+            font-family:var(--font-display); font-size:0.78rem; font-weight:600;
+            letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6);
+        }
+        .marquee-dot { width:4px; height:4px; background:var(--accent); border-radius:50%; flex-shrink:0; }
+
+        /* ═══════ URGENCY ═══════ */
+        .urgency { padding:5rem 3rem; background:var(--white); }
+        .urgency-inner { max-width:850px; margin:0 auto; text-align:center; }
+        .urgency-title { font-weight:900; font-size:clamp(1.4rem,2.8vw,2rem); margin-bottom:2rem; letter-spacing:-0.02em; }
+        .urgency-list { display:flex; flex-wrap:wrap; justify-content:center; gap:0.6rem; margin-bottom:2.2rem; }
+        .urgency-tag {
+            background:var(--paper); border:1px solid var(--gray-100);
+            padding:0.6rem 1.2rem; border-radius:10px;
+            font-size:0.82rem; font-weight:500; color:var(--gray-700);
+            transition:all 0.3s;
+        }
+        .urgency-tag:hover { border-color:var(--accent); background:rgba(200,16,46,0.03); }
+        .urgency-answer {
+            background:var(--ink); color:var(--white); border-radius:18px; padding:2.2rem;
+            max-width:600px; margin:0 auto;
+        }
+        .urgency-answer h3 { font-weight:900; font-size:1.3rem; margin-bottom:0.5rem; }
+        .urgency-answer p { font-size:0.88rem; color:rgba(255,255,255,0.6); font-weight:300; line-height:1.8; }
+
+        /* ═══════ SERVICES ═══════ */
+        .services { padding:5rem 3rem; }
+        .section-header { text-align:center; margin-bottom:3.5rem; }
+        .section-eyebrow {
+            font-family:var(--font-display); font-size:0.7rem; font-weight:600;
+            letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem;
+        }
+        .section-title { font-weight:900; font-size:clamp(1.6rem,3vw,2.3rem); letter-spacing:-0.03em; }
+        .services-grid {
+            display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem;
+            max-width:1100px; margin:0 auto;
+        }
+        .service-card {
+            background:var(--white); border-radius:18px; padding:2rem;
+            border:1px solid rgba(0,0,0,0.04); position:relative; overflow:hidden;
+            transition:all 0.5s var(--ease-out-expo); cursor:default;
+        }
+        .service-card::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:3px;
+            background:var(--accent); transform:scaleX(0); transform-origin:left;
+            transition:transform 0.5s var(--ease-out-expo);
+        }
+        .service-card:hover { transform:translateY(-5px); box-shadow:0 16px 48px rgba(0,0,0,0.06); }
+        .service-card:hover::before { transform:scaleX(1); }
+        .service-icon {
+            width:44px; height:44px; border-radius:12px;
+            background:linear-gradient(135deg, rgba(200,16,46,0.07), rgba(200,16,46,0.02));
+            display:flex; align-items:center; justify-content:center;
+            margin-bottom:1rem; color:var(--accent);
+        }
+        .service-title { font-weight:700; font-size:0.98rem; margin-bottom:0.5rem; }
+        .service-desc { font-size:0.8rem; line-height:1.75; color:var(--gray-500); font-weight:300; }
+        .service-tags { display:flex; flex-wrap:wrap; gap:0.3rem; margin-top:0.7rem; }
+        .service-tag {
+            font-size:0.65rem; padding:0.2rem 0.55rem; border-radius:6px;
+            background:var(--gray-50); color:var(--gray-500); font-weight:500;
+        }
+
+        /* ═══════ WHY ═══════ */
+        .why { padding:5rem 3rem; background:var(--ink); color:var(--white); position:relative; overflow:hidden; }
+        .why::before {
+            content:''; position:absolute; top:-20%; right:-15%; width:50vw; height:50vw;
+            border-radius:50%; background:radial-gradient(circle, rgba(200,16,46,0.05) 0%, transparent 60%);
+        }
+        .why .section-title { color:var(--white); }
+        .why-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; max-width:1100px; margin:0 auto; }
+        .why-item { text-align:center; padding:2rem 1.2rem; position:relative; }
+        .why-item:not(:last-child)::after {
+            content:''; position:absolute; right:0; top:25%; bottom:25%;
+            width:1px; background:rgba(255,255,255,0.06);
+        }
+        .why-num {
+            font-family:var(--font-display); font-weight:900; font-size:2rem;
+            color:var(--accent); margin-bottom:0.7rem;
+        }
+        .why-title { font-weight:700; font-size:0.88rem; margin-bottom:0.4rem; }
+        .why-desc { font-size:0.73rem; color:rgba(255,255,255,0.4); line-height:1.7; font-weight:300; }
+
+        /* ═══════ PRICING ═══════ */
+        .pricing { padding:5rem 3rem; background:var(--white); }
+        .pricing-grid {
+            display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem;
+            max-width:550px; margin:0 auto;
+        }
+        .price-card {
+            background:var(--paper); border-radius:16px; padding:1.6rem; text-align:center;
+            border:1px solid var(--gray-100); transition:all 0.4s var(--ease-out-expo);
+        }
+        .price-card:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.04); }
+        .price-label { font-size:0.78rem; color:var(--gray-500); font-weight:500; margin-bottom:0.4rem; }
+        .price-amount { font-family:var(--font-display); font-weight:900; font-size:1.5rem; color:var(--ink); letter-spacing:-0.03em; }
+        .price-amount span { font-size:0.8rem; font-weight:400; }
+        .pricing-note { text-align:center; margin-top:1.3rem; font-size:0.76rem; color:var(--gray-300); }
+
+        /* ═══════ AREA ═══════ */
+        .area { padding:4rem 3rem; }
+        .area-inner { max-width:750px; margin:0 auto; text-align:center; }
+        .area-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; margin-top:1.3rem; }
+        .area-tag {
+            padding:0.45rem 1rem; border-radius:100px;
+            background:var(--white); border:1px solid var(--gray-100);
+            font-size:0.8rem; font-weight:500; color:var(--gray-500);
+        }
+        .area-note { margin-top:0.8rem; font-size:0.76rem; color:var(--gray-300); }
+
+        /* ═══════ CTA SECTION ═══════ */
+        .cta-section { padding:5rem 3rem; }
+        .cta-container {
+            max-width:1100px; margin:0 auto; display:grid;
+            grid-template-columns:1fr 1fr; gap:0; border-radius:24px;
+            overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.06);
+        }
+        .cta-form-side { background:var(--white); padding:3rem; }
+        .cta-form-side h2 { font-weight:900; font-size:1.35rem; margin-bottom:0.3rem; }
+        .cta-form-side > p { color:var(--gray-500); font-size:0.82rem; margin-bottom:1.6rem; font-weight:300; }
+        .form-group { margin-bottom:1rem; }
+        .form-group label { display:block; font-size:0.74rem; font-weight:600; margin-bottom:0.3rem; color:var(--gray-700); }
+        .form-group label .req { color:var(--accent); font-size:0.65rem; margin-left:0.3rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width:100%; padding:0.72rem 0.9rem; border:1.5px solid var(--gray-100);
+            border-radius:10px; font-family:var(--font-body); font-size:0.84rem;
+            background:var(--paper); color:var(--ink);
+            transition:border-color 0.3s, box-shadow 0.3s; outline:none;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color:var(--accent); box-shadow:0 0 0 3px rgba(200,16,46,0.06);
+        }
+        .form-group textarea { resize:vertical; min-height:70px; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
+        /* reCAPTCHA */
+        .recaptcha-wrap { margin-top:0.8rem; margin-bottom:0.4rem; }
+        .hp-field { position:absolute; left:-9999px; opacity:0; height:0; width:0; }
+        .btn-submit {
+            width:100%; padding:0.9rem; margin-top:0.3rem;
+            background:var(--ink); color:var(--white); border:none; border-radius:12px;
+            font-family:var(--font-body); font-size:0.9rem; font-weight:700;
+            cursor:pointer; transition:all 0.4s var(--ease-out-expo);
+        }
+        .btn-submit:hover { background:var(--accent); transform:translateY(-2px); box-shadow:0 8px 24px rgba(200,16,46,0.25); }
+        .btn-submit:disabled { opacity:0.6; cursor:not-allowed; }
+        .form-status {
+            margin-top:1rem; padding:0.9rem 1.2rem; border-radius:10px;
+            font-size:0.84rem; font-weight:500; display:none;
+        }
+        .form-status.success { display:block; background:#e8f5e9; color:#2e7d32; border:1px solid #a5d6a7; }
+        .form-status.error { display:block; background:#fbe9e7; color:#c62828; border:1px solid #ef9a9a; }
+
+        .cta-line-side {
+            background:var(--ink); color:var(--white); padding:3rem;
+            display:flex; flex-direction:column; justify-content:center; align-items:center;
+            text-align:center; position:relative; overflow:hidden;
+        }
+        .cta-line-side::before {
+            content:''; position:absolute; top:-30%; right:-20%; width:70%; height:70%;
+            border-radius:50%; background:radial-gradient(circle, rgba(6,199,85,0.08) 0%, transparent 60%);
+        }
+        .cta-line-side > * { position:relative; z-index:1; }
+        .line-icon-wrap {
+            width:64px; height:64px; background:var(--line-green); border-radius:18px;
+            display:flex; align-items:center; justify-content:center;
+            margin-bottom:1.2rem; box-shadow:0 8px 30px rgba(6,199,85,0.3);
+        }
+        .cta-line-side h3 { font-weight:800; font-size:1.15rem; margin-bottom:0.4rem; }
+        .cta-line-side p { font-size:0.8rem; color:rgba(255,255,255,0.55); line-height:1.7; margin-bottom:1.3rem; font-weight:300; }
+        .btn-line {
+            display:inline-flex; align-items:center; gap:0.5rem;
+            background:var(--line-green); color:var(--white);
+            padding:0.8rem 1.6rem; border-radius:100px;
+            text-decoration:none; font-weight:700; font-size:0.85rem;
+            transition:all 0.4s var(--ease-out-expo);
+        }
+        .btn-line:hover { background:var(--line-green-dark); transform:translateY(-2px); box-shadow:0 8px 30px rgba(6,199,85,0.35); }
+        .cta-phone-block { margin-top:1.8rem; padding-top:1.3rem; border-top:1px solid rgba(255,255,255,0.08); }
+        .cta-phone-label { font-size:0.68rem; color:rgba(255,255,255,0.35); margin-bottom:0.2rem; }
+        .cta-phone-num { font-family:var(--font-display); font-weight:900; font-size:1.35rem; letter-spacing:0.02em; }
+        .cta-phone-num a { color:var(--white); text-decoration:none; }
+
+        /* ═══════ FOUNDER ═══════ */
+        .founder { padding:5rem 3rem; background:var(--white); }
+        .founder-inner { max-width:650px; margin:0 auto; text-align:center; }
+        .founder-inner h2 { font-weight:900; font-size:1.4rem; margin-bottom:0.2rem; }
+        .founder-role { font-size:0.76rem; color:var(--gray-300); margin-bottom:1.5rem; }
+        .founder-msg {
+            font-size:0.98rem; line-height:2; color:var(--gray-500); font-weight:300;
+            position:relative; padding:0 1rem;
+        }
+        .founder-msg::before {
+            content:'\201C'; position:absolute; top:-0.5rem; left:-0.5rem;
+            font-size:3rem; color:var(--gray-100); font-family:Georgia, serif;
+        }
+
+        /* ═══════ COMPANY ═══════ */
+        .company { padding:5rem 3rem; }
+        .company-grid {
+            max-width:900px; margin:0 auto;
+            display:grid; grid-template-columns:1fr 1.6fr; gap:3rem; align-items:start;
+        }
+        .company-left h2 { font-weight:900; font-size:1.4rem; margin-bottom:0.3rem; }
+        .company-left .nexus-logo { margin-top:1.5rem; height:80px; width:auto; display:block; }
+        .company-table { width:100%; border-collapse:collapse; }
+        .company-table tr { border-bottom:1px solid var(--gray-100); }
+        .company-table th {
+            text-align:left; padding:0.85rem 1.2rem 0.85rem 0;
+            font-size:0.76rem; font-weight:600; color:var(--gray-300);
+            white-space:nowrap; width:130px; vertical-align:top;
+        }
+        .company-table td { padding:0.85rem 0; font-size:0.84rem; line-height:1.7; }
+        .company-table a { color:var(--accent); text-decoration:none; }
+
+        /* ═══════ FOOTER ═══════ */
+        .footer { background:var(--ink); color:var(--white); padding:3rem 3rem 2rem; }
+        .footer-top {
+            max-width:1100px; margin:0 auto; display:flex;
+            justify-content:space-between; align-items:start;
+            padding-bottom:1.8rem; border-bottom:1px solid rgba(255,255,255,0.06);
+        }
+        .footer-brand { display:flex; align-items:center; gap:0.6rem; }
+        .footer-brand img { height:28px; filter:brightness(0) invert(1); }
+        .footer-brand-name { font-family:var(--font-display); font-weight:800; font-size:0.95rem; }
+        .footer-links { display:flex; gap:2rem; }
+        .footer-links a { color:rgba(255,255,255,0.4); text-decoration:none; font-size:0.76rem; transition:color 0.3s; }
+        .footer-links a:hover { color:var(--white); }
+        .footer-bottom {
+            max-width:1100px; margin:0 auto; padding-top:1.2rem;
+            display:flex; justify-content:space-between; align-items:center;
+        }
+        .footer-copy { font-size:0.66rem; color:rgba(255,255,255,0.2); }
+        .footer-sub { font-size:0.66rem; color:rgba(255,255,255,0.2); }
+
+        /* ═══════ MOBILE FLOAT CTA ═══════ */
+        .mobile-cta {
+            display:none; position:fixed; bottom:0; left:0; right:0; z-index:999;
+            padding:0.7rem 0.8rem; background:var(--white);
+            box-shadow:0 -4px 20px rgba(0,0,0,0.08); gap:0.4rem;
+        }
+        .mobile-cta a {
+            flex:1; text-align:center; padding:0.7rem; border-radius:10px;
+            font-weight:700; font-size:0.75rem; text-decoration:none;
+            display:flex; align-items:center; justify-content:center; gap:0.3rem;
+        }
+        .mobile-cta .m-call { background:var(--accent); color:var(--white); }
+        .mobile-cta .m-line { background:var(--line-green); color:var(--white); }
+        .mobile-cta .m-form { background:var(--ink); color:var(--white); }
+
+        /* ═══════ ANIMATIONS ═══════ */
+        .reveal { opacity:0; transform:translateY(35px); transition:all 0.7s var(--ease-out-expo); }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+        @keyframes slideLeft { to { opacity:1; transform:translateX(0); } }
+        @keyframes marquee { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+        /* ═══════ RESPONSIVE ═══════ */
+        @media (max-width:1024px) {
+            .hero-stats { display:none; }
+            .hero-watermark { display:none; }
+            .services-grid { grid-template-columns:1fr 1fr; }
+            .why-grid { grid-template-columns:repeat(3,1fr); }
+            .why-item:nth-child(3)::after { display:none; }
+        }
+        @media (max-width:768px) {
+            .navbar { padding:0.7rem 1.2rem; }
+            .nav-links { display:none; }
+            .hamburger { display:block; }
+            .hero { padding:7rem 1.5rem 3rem; }
+            .hero-lines span { display:none; }
+            .hero-actions { flex-direction:column; }
+            .hero-actions a { text-align:center; justify-content:center; }
+            .marquee-section, .urgency, .services, .why, .pricing, .area, .cta-section, .founder, .company { padding-left:1.3rem; padding-right:1.3rem; }
+            .services-grid { grid-template-columns:1fr; }
+            .why-grid { grid-template-columns:1fr 1fr; }
+            .why-item::after { display:none!important; }
+            .cta-container { grid-template-columns:1fr; }
+            .cta-form-side, .cta-line-side { padding:2rem 1.3rem; }
+            .form-row { grid-template-columns:1fr; }
+            .company-grid { grid-template-columns:1fr; gap:1.5rem; }
+            .footer-top { flex-direction:column; gap:1.2rem; }
+            .footer-bottom { flex-direction:column; gap:0.4rem; text-align:center; }
+            .mobile-cta { display:flex; }
+            body { padding-bottom:65px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-brand">
+            <img src="assets/dp-logo.png" alt="Drive Partner">
+            <div class="nav-brand-text">
+                <span class="nav-brand-name">DRIVE PARTNER</span>
+                <span class="nav-brand-sub">お車の総合窓口</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#why">選ばれる理由</a></li>
+            <li><a href="#estimate">無料見積り</a></li>
+            <li><a href="#company">会社概要</a></li>
+            <li><a href="tel:08031526585" class="nav-cta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                緊急連絡
+            </a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="メニュー">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#services" class="mobile-menu-link">サービス</a>
+        <a href="#why" class="mobile-menu-link">選ばれる理由</a>
+        <a href="#estimate" class="mobile-menu-link">無料見積り</a>
+        <a href="#company" class="mobile-menu-link">会社概要</a>
+        <a href="tel:08031526585" class="mobile-menu-cta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            緊急連絡
+        </a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-lines"><span></span><span></span><span></span><span></span><span></span></div>
+        <img src="assets/dp-logo.png" alt="" class="hero-watermark" aria-hidden="true">
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">24時間受付｜札幌・北海道全域対応</div>
+            <h1 class="hero-title">
+                事故・故障でお困りですか？<br>
+                <span class="highlight">すべてお任せください。</span>
+            </h1>
+            <p class="hero-sub">
+                レッカー・修理・車検・売買・保険まで。<br>
+                一本のご連絡で、最適な提携業者を手配します。<br>
+                もう業者を探さなくて大丈夫です。
+            </p>
+            <div class="hero-actions">
+                <a href="tel:08031526585" class="btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    今すぐ電話する
+                </a>
+                <a href="https://line.me/R/ti/p/@placeholder" class="btn-line-hero">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 01-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                    LINEで緊急相談
+                </a>
+                <a href="#estimate" class="btn-secondary">無料見積り</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-card">
+                <div class="stat-icon">レッカー</div>
+                <div class="stat-title">事故・故障即対応</div>
+                <div class="stat-desc">24時間受付・最短即日</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">修理</div>
+                <div class="stat-title">提携工場ネットワーク</div>
+                <div class="stat-desc">板金・車検・整備</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">中立</div>
+                <div class="stat-title">特定業者の営業ではありません</div>
+                <div class="stat-desc">お客様第一の窓口</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item"><span class="marquee-dot"></span>レッカー即対応</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>24時間受付</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>無料出張査定</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>全メーカー対応</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>事故車・不動車OK</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>修理・車検</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>保険相談</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>北海道全域</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>レッカー即対応</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>24時間受付</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>無料出張査定</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>全メーカー対応</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>事故車・不動車OK</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>修理・車検</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>保険相談</div>
+            <div class="marquee-item"><span class="marquee-dot"></span>北海道全域</div>
+        </div>
+    </div>
+
+    <section class="urgency">
+        <div class="urgency-inner reveal">
+            <h2 class="urgency-title">こんなお悩み、ありませんか？</h2>
+            <div class="urgency-list">
+                <div class="urgency-tag">今すぐレッカーを呼びたい</div>
+                <div class="urgency-tag">深夜でどこに連絡すればいいか分からない</div>
+                <div class="urgency-tag">保険を使うべきか分からない</div>
+                <div class="urgency-tag">レッカー後の代車も必要</div>
+                <div class="urgency-tag">修理先を知らない</div>
+                <div class="urgency-tag">他社レッカーに断られた</div>
+            </div>
+            <div class="urgency-answer">
+                <h3>お任せください。</h3>
+                <p>もう業者を探さなくて大丈夫です。<br>一本のご連絡で、Drive Partnerが最適な提携業者を手配します。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header reveal">
+            <div class="section-eyebrow">Services</div>
+            <h2 class="section-title">サービス一覧</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+                <h3 class="service-title">レッカー・緊急対応</h3>
+                <p class="service-desc">札幌市内24時間対応。事故車搬送、故障車搬送、雪道スタック、バッテリー上がり、パンク、エンジントラブルに対応。保険ロードサービス利用の相談も可能です。</p>
+                <div class="service-tags">
+                    <span class="service-tag">事故車搬送</span><span class="service-tag">故障車搬送</span><span class="service-tag">スタック</span><span class="service-tag">バッテリー</span><span class="service-tag">パンク</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+                <h3 class="service-title">レンタカー・代車手配</h3>
+                <p class="service-desc">レッカー後も移動手段に困りません。軽自動車、コンパクトカー、ファミリーカーを札幌市内で迅速に手配いたします。</p>
+                <div class="service-tags">
+                    <span class="service-tag">軽自動車</span><span class="service-tag">コンパクト</span><span class="service-tag">ファミリー</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+                <h3 class="service-title">修理・車検・板金</h3>
+                <p class="service-desc">板金塗装、車検、一般整備、事故修理、カスタムまで。提携工場ネットワークで最適な選択をご提案します。</p>
+                <div class="service-tags">
+                    <span class="service-tag">板金塗装</span><span class="service-tag">車検</span><span class="service-tag">整備</span><span class="service-tag">カスタム</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+                <h3 class="service-title">車の売買サポート</h3>
+                <p class="service-desc">オークション代行、下取り比較、高価買取。販売店ではなく中立の窓口として、最適な売買をサポートします。</p>
+                <div class="service-tags">
+                    <span class="service-tag">オークション代行</span><span class="service-tag">下取り比較</span><span class="service-tag">高価買取</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <h3 class="service-title">保険サポート</h3>
+                <p class="service-desc">事故時の対応を間違えると損をするケースがあります。特約活用、自費修理との比較など、まずは無料でご相談ください。</p>
+                <div class="service-tags">
+                    <span class="service-tag">特約活用</span><span class="service-tag">自費修理比較</span><span class="service-tag">無料相談</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                <h3 class="service-title">手続き代行</h3>
+                <p class="service-desc">名義変更、廃車手続き、ローン残債処理など、面倒な手続きもお任せください。ワンストップで対応します。</p>
+                <div class="service-tags">
+                    <span class="service-tag">名義変更</span><span class="service-tag">廃車手続き</span><span class="service-tag">書類代行</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why" id="why">
+        <div class="section-header reveal">
+            <div class="section-eyebrow" style="color:rgba(255,255,255,0.5);">Why Drive Partner</div>
+            <h2 class="section-title">選ばれる理由</h2>
+        </div>
+        <div class="why-grid">
+            <div class="why-item reveal"><div class="why-num">01</div><h3 class="why-title">ワンストップ窓口</h3><p class="why-desc">あなたは探さない。<br>任せるだけで解決。</p></div>
+            <div class="why-item reveal"><div class="why-num">02</div><h3 class="why-title">中立ポジション</h3><p class="why-desc">特定業者の営業ではありません。<br>安心してお任せください。</p></div>
+            <div class="why-item reveal"><div class="why-num">03</div><h3 class="why-title">スピード重視</h3><p class="why-desc">緊急時は時間が命。<br>他社に断られた方もご相談を。</p></div>
+            <div class="why-item reveal"><div class="why-num">04</div><h3 class="why-title">北海道密着</h3><p class="why-desc">札幌市中央区拠点。<br>各地の信頼できる業者と提携。</p></div>
+            <div class="why-item reveal"><div class="why-num">05</div><h3 class="why-title">透明性</h3><p class="why-desc">事前説明 → 納得 → 実行。<br>不明な請求はありません。</p></div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="section-header reveal">
+            <div class="section-eyebrow">Pricing</div>
+            <h2 class="section-title">料金目安</h2>
+        </div>
+        <div class="pricing-grid reveal">
+            <div class="price-card"><div class="price-label">レッカー基本料金</div><div class="price-amount">¥11,000<span>〜（税込）</span></div></div>
+            <div class="price-card"><div class="price-label">バッテリー上がり</div><div class="price-amount">¥5,500<span>〜（税込）</span></div></div>
+        </div>
+        <p class="pricing-note reveal">※事前見積り可能です。お気軽にお問い合わせください。</p>
+    </section>
+
+    <section class="area">
+        <div class="area-inner reveal">
+            <div class="section-eyebrow">Coverage Area</div>
+            <h2 class="section-title">対応エリア</h2>
+            <div class="area-tags">
+                <span class="area-tag">札幌市中央区</span><span class="area-tag">北区</span><span class="area-tag">東区</span><span class="area-tag">西区</span><span class="area-tag">豊平区</span><span class="area-tag">白石区</span>
+            </div>
+            <p class="area-note">その他北海道全域対応（要相談）</p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="estimate">
+        <div class="cta-container reveal">
+            <div class="cta-form-side">
+                <h2>無料見積り・お問い合わせ</h2>
+                <p>内容を確認後、折り返しご連絡いたします</p>
+                <!-- ▼▼▼ IMPORTANT: Replace YOUR_FORM_ID below with your real Formspree form ID ▼▼▼ -->
+                <!-- Get one free at https://formspree.io — create a form, copy the ID (e.g. "xpzvqkdl") -->
+                <form id="contact-form" action="https://formspree.io/f/mzdajoqp" method="POST">
+                    <div class="form-row">
+                        <div class="form-group"><label>お名前 <span class="req">必須</span></label><input type="text" name="name" placeholder="山田 太郎" required></div>
+                        <div class="form-group"><label>電話番号 <span class="req">必須</span></label><input type="tel" name="phone" placeholder="090-1234-5678" required></div>
+                    </div>
+                    <div class="form-group"><label>メールアドレス</label><input type="email" name="email" placeholder="example@mail.com"></div>
+                    <div class="form-group">
+                        <label>お問い合わせ種別 <span class="req">必須</span></label>
+                        <select name="type" required>
+                            <option value="" disabled selected>選択してください</option>
+                            <option>レッカー・緊急対応</option><option>レンタカー・代車</option>
+                            <option>修理・車検・板金</option><option>車の売買相談</option>
+                            <option>保険に関する相談</option><option>その他</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>車種（任意）</label><input type="text" name="car" placeholder="プリウス 2020年式"></div>
+                        <div class="form-group">
+                            <label>ご希望の連絡方法</label>
+                            <select name="contact_method"><option>電話</option><option>メール</option><option>LINE</option></select>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>お問い合わせ内容</label><textarea name="message" placeholder="状況やご要望をお気軽にご記入ください"></textarea></div>
+                    <!-- Honeypot (hidden from humans, bots fill it) -->
+                    <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off">
+                    <!-- ▼▼▼ Replace 6LcLK3QsAAAAAO4vAbeQwp3RJ5EdgP7D885CtXhs with your key from https://www.google.com/recaptcha/admin ▼▼▼ -->
+                    <div class="recaptcha-wrap">
+                        <div class="g-recaptcha" data-sitekey="6LcLK3QsAAAAAO4vAbeQwp3RJ5EdgP7D885CtXhs"></div>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submit-btn">送信する</button>
+                    <div id="form-status" class="form-status"></div>
+                </form>
+            </div>
+            <div class="cta-line-side">
+                <div class="line-icon-wrap">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 01-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                </div>
+                <h3>LINEで気軽に相談</h3>
+                <p>友だち追加するだけでOK。<br>トーク画面から直接お問い合わせ。<br>写真を送るだけのかんたん査定も。</p>
+                <a href="https://line.me/R/ti/p/@placeholder" class="btn-line">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.626.626 0 01-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                    友だち追加する
+                </a>
+                <div class="cta-phone-block">
+                    <div class="cta-phone-label">お電話でのお問い合わせ</div>
+                    <div class="cta-phone-num"><a href="tel:08031526585">080-3152-6585</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="founder">
+        <div class="founder-inner reveal">
+            <div class="section-eyebrow">Message</div>
+            <h2>遠藤 友樹</h2>
+            <div class="founder-role">Drive Partner 代表 ／ 株式会社NEXUS 代表取締役</div>
+            <div class="founder-msg">
+                事故や故障は突然起こります。<br>
+                「どこに電話すればいいのか分からない」<br>
+                その不安を解消する窓口でありたい。<br><br>
+                車のことで困ったら、まずDrive Partnerへ。
+            </div>
+        </div>
+    </section>
+
+    <section class="company" id="company">
+        <div class="company-grid">
+            <div class="company-left reveal">
+                <div class="section-eyebrow">Company</div>
+                <h2>会社概要</h2>
+                <img src="assets/nexus-logo-horizontal.png" alt="NEXUS" class="nexus-logo">
+            </div>
+            <table class="company-table reveal">
+                <tr><th>法人名</th><td>株式会社NEXUS</td></tr>
+                <tr><th>代表者</th><td>代表取締役　遠藤 友樹</td></tr>
+                <tr><th>設立</th><td>2025年12月26日</td></tr>
+                <tr><th>事業内容</th><td>自動車関連全般仲介代理店業</td></tr>
+                <tr><th>資本金</th><td>100万円</td></tr>
+                <tr><th>所在地</th><td>〒064-0000<br>札幌市中央区南11条西20丁目3-29</td></tr>
+                <tr><th>電話番号</th><td><a href="tel:08031526585">080-3152-6585</a></td></tr>
+                <tr><th>メール</th><td><a href="mailto:info@nexus-sapporo.com">info@nexus-sapporo.com</a></td></tr>
+                <tr><th>許可・登録</th><td>古物商許可</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="assets/dp-logo.png" alt="Drive Partner">
+                <span class="footer-brand-name">DRIVE PARTNER</span>
+            </div>
+            <div class="footer-links">
+                <a href="#services">サービス</a><a href="#why">選ばれる理由</a>
+                <a href="#estimate">無料見積り</a><a href="#company">会社概要</a>
+                <a href="#">プライバシーポリシー</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2025 株式会社NEXUS. All rights reserved.</span>
+            <span class="footer-sub">Drive Partner｜お車の総合窓口</span>
+        </div>
+    </footer>
+
+    <div class="mobile-cta">
+        <a href="tel:08031526585" class="m-call">電話する</a>
+        <a href="https://line.me/R/ti/p/@placeholder" class="m-line">LINE相談</a>
+        <a href="#estimate" class="m-form">見積り</a>
+    </div>
+
+    <script>
+        const navbar=document.getElementById('navbar');
+        window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>60);});
+        const reveals=document.querySelectorAll('.reveal');
+        const obs=new IntersectionObserver((entries)=>{
+            entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+        },{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
+        reveals.forEach(el=>obs.observe(el));
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+            a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});
+        });
+
+        // Hamburger mobile menu
+        const hamburger=document.getElementById('hamburger');
+        const mobileMenu=document.getElementById('mobile-menu');
+        hamburger.addEventListener('click',function(){
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';
+        });
+        document.querySelectorAll('.mobile-menu-link').forEach(function(link){
+            link.addEventListener('click',function(e){
+                e.preventDefault();
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow='';
+                const t=document.querySelector(this.getAttribute('href'));
+                if(t) setTimeout(function(){t.scrollIntoView({behavior:'smooth',block:'start'});},100);
+            });
+        });
+
+        // Contact form AJAX submission
+        const form=document.getElementById('contact-form');
+        const statusDiv=document.getElementById('form-status');
+        const submitBtn=document.getElementById('submit-btn');
+        if(form){
+            form.addEventListener('submit',function(e){
+                e.preventDefault();
+                // Honeypot check
+                if(form.querySelector('[name="_gotcha"]').value){
+                    statusDiv.className='form-status success';
+                    statusDiv.textContent='送信が完了しました。折り返しご連絡いたします。';
+                    form.reset(); return;
+                }
+                // reCAPTCHA check
+                if(typeof grecaptcha!=='undefined'&&!grecaptcha.getResponse()){
+                    statusDiv.className='form-status error';
+                    statusDiv.textContent='「私はロボットではありません」にチェックを入れてください。';
+                    return;
+                }
+                submitBtn.disabled=true;
+                submitBtn.textContent='送信中...';
+                statusDiv.className='form-status';
+                statusDiv.textContent='';
+                fetch(form.action,{
+                    method:'POST',
+                    body:new FormData(form),
+                    headers:{'Accept':'application/json'}
+                }).then(function(r){
+                    if(r.ok){
+                        statusDiv.className='form-status success';
+                        statusDiv.textContent='送信が完了しました。折り返しご連絡いたします。';
+                        form.reset();
+                        if(typeof grecaptcha!=='undefined') grecaptcha.reset();
+                    }else{
+                        return r.json().then(function(d){
+                            statusDiv.className='form-status error';
+                            statusDiv.textContent=d.errors?d.errors.map(function(x){return x.message;}).join(', '):'送信に失敗しました。お手数ですがお電話ください。';
+                        });
+                    }
+                }).catch(function(){
+                    statusDiv.className='form-status error';
+                    statusDiv.textContent='送信に失敗しました。お手数ですがお電話ください。';
+                }).finally(function(){
+                    submitBtn.disabled=false;
+                    submitBtn.textContent='送信する';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
