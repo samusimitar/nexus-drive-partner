@@ -178,6 +178,7 @@
             line-height:1.18; letter-spacing:-0.03em; margin-bottom:1.3rem;
             opacity:0; transform:translateY(30px);
             animation:fadeUp 0.8s var(--ease-out-expo) 0.35s forwards;
+            word-break:keep-all; overflow-wrap:break-word;
         }
         .hero-title .highlight { position:relative; display:inline-block; }
         .hero-title .highlight::after {
@@ -241,7 +242,7 @@
         .stat-desc { font-size:0.72rem; color:var(--gray-300); font-weight:400; }
 
         /* ═══════ MARQUEE ═══════ */
-        .marquee-section { padding:1.2rem 0; background:var(--ink); overflow:hidden; }
+        .marquee-section { padding:1.2rem 0; background:linear-gradient(135deg, var(--navy), var(--blue)); overflow:hidden; }
         .marquee-track { display:flex; animation:marquee 30s linear infinite; white-space:nowrap; }
         .marquee-item {
             flex-shrink:0; display:flex; align-items:center; gap:1.8rem; padding:0 1.8rem;
@@ -263,7 +264,7 @@
         }
         .urgency-tag:hover { border-color:var(--accent); background:rgba(200,16,46,0.03); }
         .urgency-answer {
-            background:var(--ink); color:var(--white); border-radius:18px; padding:2.2rem;
+            background:linear-gradient(135deg, var(--navy), var(--blue)); color:var(--white); border-radius:18px; padding:2.2rem;
             max-width:600px; margin:0 auto;
         }
         .urgency-answer h3 { font-weight:900; font-size:1.3rem; margin-bottom:0.5rem; }
@@ -308,10 +309,10 @@
         }
 
         /* ═══════ WHY ═══════ */
-        .why { padding:5rem 3rem; background:var(--ink); color:var(--white); position:relative; overflow:hidden; }
+        .why { padding:5rem 3rem; background:linear-gradient(135deg, var(--navy), var(--blue)); color:var(--white); position:relative; overflow:hidden; }
         .why::before {
             content:''; position:absolute; top:-20%; right:-15%; width:50vw; height:50vw;
-            border-radius:50%; background:radial-gradient(circle, rgba(200,16,46,0.05) 0%, transparent 60%);
+            border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
         }
         .why .section-title { color:var(--white); }
         .why-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; max-width:1100px; margin:0 auto; }
@@ -352,7 +353,7 @@
             background:var(--white); border:1px solid var(--gray-100);
             font-size:0.8rem; font-weight:500; color:var(--gray-500);
         }
-        .area-note { margin-top:0.8rem; font-size:0.76rem; color:var(--gray-300); }
+        .area-note { margin-top:1.2rem; font-size:1rem; color:var(--blue); font-weight:700; letter-spacing:0.02em; }
 
         /* ═══════ CTA SECTION ═══════ */
         .cta-section { padding:5rem 3rem; }
@@ -397,7 +398,7 @@
         .form-status.error { display:block; background:#fbe9e7; color:#c62828; border:1px solid #ef9a9a; }
 
         .cta-line-side {
-            background:var(--ink); color:var(--white); padding:3rem;
+            background:linear-gradient(135deg, var(--navy), var(--blue)); color:var(--white); padding:3rem;
             display:flex; flex-direction:column; justify-content:center; align-items:center;
             text-align:center; position:relative; overflow:hidden;
         }
@@ -459,7 +460,7 @@
         .company-table a { color:var(--accent); text-decoration:none; }
 
         /* ═══════ FOOTER ═══════ */
-        .footer { background:var(--ink); color:var(--white); padding:3rem 3rem 2rem; }
+        .footer { background:var(--navy); color:var(--white); padding:3rem 3rem 2rem; }
         .footer-top {
             max-width:1100px; margin:0 auto; display:flex;
             justify-content:space-between; align-items:start;
@@ -546,7 +547,7 @@
             <li><a href="#why">選ばれる理由</a></li>
             <li><a href="#estimate">無料見積り</a></li>
             <li><a href="#company">会社概要</a></li>
-            <li><a href="tel:08031526585" class="nav-cta">
+            <li><a href="tel:08076418416" class="nav-cta">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
                 緊急連絡
             </a></li>
@@ -561,7 +562,7 @@
         <a href="#why" class="mobile-menu-link">選ばれる理由</a>
         <a href="#estimate" class="mobile-menu-link">無料見積り</a>
         <a href="#company" class="mobile-menu-link">会社概要</a>
-        <a href="tel:08031526585" class="mobile-menu-cta">
+        <a href="tel:08076418416" class="mobile-menu-cta">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             緊急連絡
         </a>
@@ -584,7 +585,7 @@
                 もう業者を探さなくて大丈夫です。
             </p>
             <div class="hero-actions">
-                <a href="tel:08031526585" class="btn-primary">
+                <a href="tel:08076418416" class="btn-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
                     今すぐ電話する
                 </a>
@@ -597,19 +598,19 @@
         </div>
         <div class="hero-stats">
             <div class="stat-card">
-                <div class="stat-icon">レッカー</div>
+                <div class="stat-icon">レッカー・レンタカー手配</div>
                 <div class="stat-title">事故・故障即対応</div>
-                <div class="stat-desc">24時間受付・最短即日</div>
+                <div class="stat-desc">24時間・北海道全域受付</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon">修理</div>
+                <div class="stat-icon">お車の買取・乗り換え相談</div>
+                <div class="stat-title">はじめてでも安心の無料査定</div>
+                <div class="stat-desc">査定から売却までワンストップ対応</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">修理・板金・整備</div>
                 <div class="stat-title">提携工場ネットワーク</div>
-                <div class="stat-desc">板金・車検・整備</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">中立</div>
-                <div class="stat-title">特定業者の営業ではありません</div>
-                <div class="stat-desc">お客様第一の窓口</div>
+                <div class="stat-desc">必要なものを適正な価格で</div>
             </div>
         </div>
     </section>
@@ -730,8 +731,8 @@
             <h2 class="section-title">料金目安</h2>
         </div>
         <div class="pricing-grid reveal">
-            <div class="price-card"><div class="price-label">レッカー基本料金</div><div class="price-amount">¥11,000<span>〜（税込）</span></div></div>
-            <div class="price-card"><div class="price-label">バッテリー上がり</div><div class="price-amount">¥5,500<span>〜（税込）</span></div></div>
+            <div class="price-card"><div class="price-label">レッカー基本料金</div><div class="price-amount">¥8,800<span>〜</span></div></div>
+            <div class="price-card"><div class="price-label">バッテリー上がり</div><div class="price-amount">¥4,400<span>〜</span></div></div>
         </div>
         <p class="pricing-note reveal">※事前見積り可能です。お気軽にお問い合わせください。</p>
     </section>
@@ -743,7 +744,7 @@
             <div class="area-tags">
                 <span class="area-tag">札幌市中央区</span><span class="area-tag">北区</span><span class="area-tag">東区</span><span class="area-tag">西区</span><span class="area-tag">豊平区</span><span class="area-tag">白石区</span>
             </div>
-            <p class="area-note">その他北海道全域対応（要相談）</p>
+            <p class="area-note">その他北海道全域対応可能です</p>
         </div>
     </section>
 
@@ -799,7 +800,7 @@
                 </a>
                 <div class="cta-phone-block">
                     <div class="cta-phone-label">お電話でのお問い合わせ</div>
-                    <div class="cta-phone-num"><a href="tel:08031526585">080-3152-6585</a></div>
+                    <div class="cta-phone-num"><a href="tel:08076418416">080-7641-8416</a></div>
                 </div>
             </div>
         </div>
@@ -808,13 +809,15 @@
     <section class="founder">
         <div class="founder-inner reveal">
             <div class="section-eyebrow">Message</div>
-            <h2>遠藤 友樹</h2>
-            <div class="founder-role">Drive Partner 代表 ／ 株式会社NEXUS 代表取締役</div>
+            <h2>Drive Partner</h2>
+            <div class="founder-role" style="font-size:0.95rem; color:var(--gray-700); font-weight:600; margin-bottom:0.5rem;">代表メッセージ</div>
+            <div style="font-size:0.82rem; color:var(--gray-500); margin-bottom:1.8rem;">株式会社NEXUS代表取締役　遠藤 友樹</div>
             <div class="founder-msg">
                 事故や故障は突然起こります。<br>
-                「どこに電話すればいいのか分からない」<br>
+                「どこに相談すればいいかわからない」<br>
                 その不安を解消する窓口でありたい。<br><br>
-                車のことで困ったら、まずDrive Partnerへ。
+                車のことで困ったらまずDrive Partnerへ。<br>
+                一本の連絡であなたのお車の困りごとを全て解決します。
             </div>
         </div>
     </section>
@@ -833,7 +836,7 @@
                 <tr><th>事業内容</th><td>自動車関連全般仲介代理店業</td></tr>
                 <tr><th>資本金</th><td>100万円</td></tr>
                 <tr><th>所在地</th><td>〒064-0000<br>札幌市中央区南11条西20丁目3-29</td></tr>
-                <tr><th>電話番号</th><td><a href="tel:08031526585">080-3152-6585</a></td></tr>
+                <tr><th>電話番号</th><td><a href="tel:08076418416">080-7641-8416</a></td></tr>
                 <tr><th>メール</th><td><a href="mailto:info@nexus-sapporo.com">info@nexus-sapporo.com</a></td></tr>
                 <tr><th>許可・登録</th><td>古物商許可</td></tr>
             </table>
@@ -859,7 +862,7 @@
     </footer>
 
     <div class="mobile-cta">
-        <a href="tel:08031526585" class="m-call">電話する</a>
+        <a href="tel:08076418416" class="m-call">電話する</a>
         <a href="https://lin.ee/Ef63AVn" class="m-line">LINE相談</a>
         <a href="#estimate" class="m-form">見積り</a>
     </div>
